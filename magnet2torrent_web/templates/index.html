@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magnet to Torrent</title>
+
+    <link rel="icon" href="../static/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/theme_toggle.js"></script>
+</head>
+
+<body>
+    <button id="theme-toggle">Light/Dark theme</button>
+    <h1>Magnet to Torrent</h1>
+    <div class="form-container">
+        <form action="/magnet-to-torrent" method="POST">
+            <input type="text" name="magnet_link" placeholder="Enter Magnet Link" required />
+            <button type="submit">Convert</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
+</body>
+
+</html>
