@@ -8,20 +8,42 @@
 
     <link rel="icon" href="../static/images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="../static/js/theme_toggle.js"></script>
+    <script src="../static/js/theme_toggle.js" defer></script>
+    <script src="../static/js/status.js" defer></script>
 </head>
 
 <body>
-    <button id="theme-toggle">Light/Dark theme</button>
+    <div class="top-bar">
+        <a href="https://github.com/yourusername/your-repo" class="mdl-button mdl-js-button mdl-button--icon"
+            title="GitHub">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub Logo"
+                style="width: 24px; height: 24px" />
+        </a>
+        <button id="theme-toggle" class="mdl-button mdl-js-button mdl-button--icon" title="Toggle theme">
+            <i class="material-icons" id="theme-icon">light_mode</i>
+        </button>
+    </div>
+
     <h1>Magnet to Torrent</h1>
     <div class="form-container">
         <form action="/magnet-to-torrent" method="POST">
             <input type="text" name="magnet_link" placeholder="Enter Magnet Link" required />
-            <button type="submit">Convert</button>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Convert
+            </button>
         </form>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
+
+    <div id="progress" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" hidden></div>
+
+    <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+    </div>
 </body>
 
 </html>
