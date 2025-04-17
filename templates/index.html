@@ -16,9 +16,9 @@
 
 <body>
     <div class="top-bar">
-        <a href="https://github.com/yourusername/your-repo" class="mdl-button mdl-js-button mdl-button--icon"
+        <a href="https://github.com/ZhanZiyuan/Magnet2Torrent" class="mdl-button mdl-js-button mdl-button--icon"
             title="GitHub">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub Logo"
+            <img id="github-icon" src="../static/images/github-mark.svg" alt="GitHub Logo"
                 style="width: 24px; height: 24px" />
         </a>
         <button id="theme-toggle" class="mdl-button mdl-js-button mdl-button--icon" title="Toggle theme">
@@ -29,7 +29,7 @@
     <h1>Magnet to Torrent</h1>
     <div class="form-container">
         <form action="/magnet-to-torrent" method="POST">
-            <input type="text" name="magnet_link" placeholder="Enter Magnet Link" required />
+            <input type="text" name="magnet_link" placeholder="Please enter a magnet link" required />
             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                 Convert
             </button>
