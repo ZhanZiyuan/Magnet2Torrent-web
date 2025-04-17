@@ -10,8 +10,7 @@ import urllib.parse
 from pathlib import Path
 
 import libtorrent as lt
-from flask import (Flask, Response, make_response, render_template, request,
-                   send_file)
+from flask import Flask, Response, make_response, render_template, request, send_file
 
 app = Flask(
     __name__,
@@ -44,9 +43,10 @@ def parse_magnet_link(magnet_link: str) -> tuple:
 
 def magnet_to_torrent(
     magnet_link: str, saved_path: str = str(Path(__file__).parent), timeout: int = 60
-) -> None:
+) -> tuple:
     """
     Converts a magnet link to a torrent file by downloading metadata.
+    Returns the file path if successful, or an error message if failed.
     """
     ses = lt.session()
 
@@ -64,7 +64,7 @@ def magnet_to_torrent(
     while not handle.status().has_metadata:
         if time.time() - start_time > timeout:
             print("Metadata download timed out!")
-            sys.exit(1)
+            return None, "Metadata download timed out!"
 
         sys.stdout.write(".")
         sys.stdout.flush()
@@ -76,16 +76,18 @@ def magnet_to_torrent(
 
     if torrent_info is None:
         print("Unable to retrieve torrent information!")
-        sys.exit(1)
+        return None, "Unable to retrieve torrent information!"
 
     torrent = lt.create_torrent(torrent_info)
 
     torrent_filename = f"{parse_magnet_link(magnet_link)[1]}.torrent"
+    torrent_filepath = Path(UPLOAD_FOLDER) / torrent_filename
 
-    with open(torrent_filename, "wb") as torrent_file:
+    with open(torrent_filepath, "wb") as torrent_file:
         torrent_file.write(lt.bencode(torrent.generate()))
 
     print(f"Torrent file created: {torrent_filename}")
+    return torrent_filepath, None
 
 
 @app.route("/")
@@ -106,28 +108,15 @@ def magnet_to_torrent_route() -> Response:
     if not magnet_link:
         return make_response("Magnet link is required", 400)
 
-    # Convert magnet link to torrent
-    magnet_to_torrent(magnet_link)
+    torrent_filepath, error = magnet_to_torrent(magnet_link)
 
-    # Generate file name and path
-    torrent_filename = f"{parse_magnet_link(magnet_link)[1]}.torrent"
-    torrent_filepath = Path(UPLOAD_FOLDER) / torrent_filename
+    if error:
+        return make_response(error, 500)
 
-    # Check if the file exists
     if not torrent_filepath.exists():
-        return make_response(f"File {torrent_filename} not found", 404)
+        return make_response(f"File not found: {torrent_filepath}", 404)
 
-    # URL encode the file name to handle special characters
-    safe_torrent_filename = urllib.parse.quote(torrent_filename)
-
-    # Return the file as an attachment
-    response = make_response(send_file(torrent_filepath, as_attachment=True))
-    response.headers["Content-Disposition"] = (
-        f"attachment; filename={safe_torrent_filename}"
-    )
-    response.headers["Cache-Control"] = "no-store"
-
-    return response
+    return send_file(torrent_filepath, as_attachment=True)
 
 
 if __name__ == "__main__":
