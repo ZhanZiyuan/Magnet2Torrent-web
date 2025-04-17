@@ -10,7 +10,8 @@ import urllib.parse
 from pathlib import Path
 
 import libtorrent as lt
-from flask import Flask, Response, make_response, render_template, request, send_file
+from flask import (Flask, Response, make_response, render_template, request,
+                   send_file)
 
 app = Flask(
     __name__,
@@ -80,11 +81,18 @@ def magnet_to_torrent(
 
     torrent = lt.create_torrent(torrent_info)
 
-    torrent_filename = f"{parse_magnet_link(magnet_link)[1]}.torrent"
+    info_hash = parse_magnet_link(magnet_link)[0]
+    # 使用info_hash的前10个字符作为文件名
+    torrent_filename = f"{info_hash[:10]}.torrent"
     torrent_filepath = Path(UPLOAD_FOLDER) / torrent_filename
 
-    with open(torrent_filepath, "wb") as torrent_file:
-        torrent_file.write(lt.bencode(torrent.generate()))
+    # 处理特殊字符的文件路径
+    try:
+        with open(torrent_filepath, "wb") as torrent_file:
+            torrent_file.write(lt.bencode(torrent.generate()))
+    except Exception as e:
+        print(f"Error saving torrent file: {e}")
+        return None, f"Error saving torrent file: {e}"
 
     print(f"Torrent file created: {torrent_filename}")
     return torrent_filepath, None
