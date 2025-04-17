@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+"""
+Convert a magnet link to a .torrent file.
+"""
 
 import sys
 import time
@@ -10,7 +13,11 @@ import libtorrent as lt
 from flask import (Flask, Response, make_response, render_template, request,
                    send_file)
 
-app = Flask(__name__, static_folder="./static", template_folder="./templates")
+app = Flask(
+    __name__,
+    static_folder="../static",
+    template_folder="../templates"
+)
 
 UPLOAD_FOLDER = "/tmp"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
