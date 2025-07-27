@@ -1,3 +1,8 @@
+<p align="center">
+    <img alt="favicon" src="./static/images/favicon.svg"
+        width="138" />
+</p>
+
 # Magnet2Torrent-web
 
 [![GitHub deployments](https://img.shields.io/github/deployments/ZhanZiyuan/Magnet2Torrent-web/Production)](https://github.com/ZhanZiyuan/Magnet2Torrent-web/blob/main/vercel.json)
