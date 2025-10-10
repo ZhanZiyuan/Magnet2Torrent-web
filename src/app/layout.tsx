@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Torrent Generator',
-  description: 'Convert magnet links to .torrent files instantly.',
+  title: 'Magnet to Torrent',
+  description: 'Convert a magnet link to a .torrent file.',
 };
 
 export default function RootLayout({
