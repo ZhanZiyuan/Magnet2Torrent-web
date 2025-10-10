@@ -118,7 +118,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-background p-4">
       <header className="absolute top-4 right-4">
-        <Link href="https://github.com/example/magnet2torrent-web" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+        <Link href="https://github.com/ZhanZiyuan/Magnet2Torrent" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
           <Button variant="ghost" size="icon">
             <Github className="h-6 w-6" />
           </Button>
@@ -129,7 +129,7 @@ export default function Home() {
         <Card className="bg-card/90 backdrop-blur-sm border-primary/10 shadow-lg">
           <CardHeader className="items-center text-center">
             <CardTitle className="text-3xl font-bold tracking-tight">
-              Torrent Generator
+              Magnet to Torrent
             </CardTitle>
             <CardDescription className="pt-1 text-muted-foreground">
               Paste a magnet link to instantly generate a .torrent file.
