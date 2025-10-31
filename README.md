@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="favicon" src="./src/app/logo.svg"
+    <img alt="favicon" src="./src/app/icon.svg"
         width="138" />
 </p>
 
