@@ -73,6 +73,12 @@
 3. 应用程序将自动尝试获取元数据（根据节点可用性，这可能需要最多30秒）。
 4. 成功后，`.torrent`文件将自动开始下载。
 
+## 类似的项目
+
+- [magnet2torrent](https://github.com/Tsuk1ko/magnet2torrent-js)
+- [Magnet2Torrent](https://github.com/danfolkes/Magnet2Torrent)
+- [Magnet2Torrent](https://github.com/JohnDoee/magnet2torrent)
+
 ## 开源许可
 
 本项目基于 GPLv3 许可证 - 详情请参阅 [LICENSE](./LICENSE) 文件。

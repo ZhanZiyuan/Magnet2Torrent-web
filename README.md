@@ -73,6 +73,12 @@ It fetches metadata from the BitTorrent network and generates a download file in
 3. The application will automatically attempt to fetch the metadata (this may take up to 30 seconds depending on peer availability).
 4. Upon success, the `.torrent` file will automatically download.
 
+## Similar Projects
+
+- [magnet2torrent](https://github.com/Tsuk1ko/magnet2torrent-js)
+- [Magnet2Torrent](https://github.com/danfolkes/Magnet2Torrent)
+- [Magnet2Torrent](https://github.com/JohnDoee/magnet2torrent)
+
 ## License
 
 This project is licensed under the GPLv3 License - see the [LICENSE](./LICENSE) file for details.
