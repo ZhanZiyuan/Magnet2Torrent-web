@@ -1,3 +1,5 @@
+
+
 <p align="center">
     <img alt="favicon" src="./src/app/icon.svg"
         width="138" />
@@ -64,7 +66,7 @@ It fetches metadata from the BitTorrent network and generates a download file in
    npm run dev
    ```
 
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
 
 ## Usage
 
