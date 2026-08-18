@@ -15,21 +15,23 @@
 [![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/ZhanZiyuan/Magnet2Torrent-web/total)](https://github.com/ZhanZiyuan/Magnet2Torrent-web/releases)
 [![Vercel Deploy](https://deploy-badge.vercel.app/vercel/magnet2torrent)](https://magnet2torrent.vercel.app/)
 
-A simple, modern web application built with Next.js that converts Magnet links into `.torrent` files.
-It fetches metadata from the BitTorrent network and generates a download file instantly.
+A responsive web application that converts Magnet links and BTIH Info Hashes into `.torrent` files.
+It fetches metadata directly from the BitTorrent network and starts the download in the browser.
 
 ## Features
 
-- **Instant Conversion**: Paste a magnet link and get a `.torrent` file.
-- **Auto-detection**: Automatically validates and processes the link upon pasting.
-- **Modern UI**: Clean, responsive interface built with Shadcn/UI and Tailwind CSS.
-- **Real-time Feedback**: Toast notifications for success and error states.
-- **Server-Side Processing**: Utilizes `magnet2torrent-js` in a secure server action to handle DHT metadata fetching.
+- **Flexible Input**: Accepts full magnet URIs, tracker-enabled magnet URIs, and hexadecimal or Base32 BTIH Info Hashes.
+- **Responsive Layout**: Side-by-side conversion and history panels on wide screens, stacked panels on smaller screens.
+- **Localized Interface**: English, Simplified Chinese, Traditional Chinese, and Japanese with browser-language detection.
+- **Theme Support**: Light and dark themes that follow the device preference by default.
+- **Clear Feedback**: Transient notifications for success, invalid input, conversion failure, and timeout states.
+- **Server-Side Processing**: Uses `magnet2torrent-js` in a Node.js Route Handler to fetch BitTorrent metadata.
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Framework**: [Next.js 16](https://nextjs.org/) with React 19 and Turbopack
+- **Language**: TypeScript 5
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
 - **Components**: [Shadcn/UI](https://ui.shadcn.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Core Logic**: [magnet2torrent-js](https://github.com/Tsuk1ko/magnet2torrent-js)
@@ -38,7 +40,7 @@ It fetches metadata from the BitTorrent network and generates a download file in
 
 ### Prerequisites
 
-- Node.js 18+ installed on your machine.
+- Node.js 20.9+ installed on your machine.
 - npm package manager.
 
 ### Installation
@@ -64,14 +66,14 @@ It fetches metadata from the BitTorrent network and generates a download file in
    npm run dev
    ```
 
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
 
 ## Usage
 
-1. Copy a valid magnet link (starting with `magnet:?xt=urn:btih:`).
-2. Paste it into the input field on the home page.
-3. The application will automatically attempt to fetch the metadata (this may take up to 30 seconds depending on peer availability).
-4. Upon success, the `.torrent` file will automatically download.
+1. Paste a valid magnet URI or BTIH Info Hash into the input field.
+2. Select **Convert and download**.
+3. The application attempts to fetch metadata for up to 30 seconds, depending on peer availability.
+4. On success, the `.torrent` file downloads automatically and the conversion is added to local history.
 
 ## Similar Projects
 
