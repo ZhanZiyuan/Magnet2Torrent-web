@@ -1,27 +1,38 @@
-import type {Metadata} from 'next';
-import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
+import type { Metadata, Viewport } from "next";
+
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Magnet to Torrent',
-  description: 'Convert a magnet link to a .torrent file.',
+  title: "Magnet2Torrent — Magnet to torrent converter",
+  description:
+    "Convert complete magnet links or info hashes into downloadable torrent files using peer-to-peer metadata.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#eff8ff" },
+    { media: "(prefers-color-scheme: dark)", color: "#020817" },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
-        {children}
-        <Toaster />
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="magnet2torrent.theme"
+        >
+          {children}
+          <Toaster position="top-center" closeButton richColors />
+        </ThemeProvider>
       </body>
     </html>
   );
