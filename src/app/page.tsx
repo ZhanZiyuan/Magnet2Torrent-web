@@ -22,10 +22,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -375,9 +373,7 @@ export default function Home() {
                 <Languages aria-hidden="true" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuLabel>{t.languageMenu}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
+            <DropdownMenuContent align="end" className="w-44 border-border/80 bg-popover">
               <DropdownMenuRadioGroup
                 value={locale}
                 onValueChange={(value) => changeLocale(value as Locale)}
@@ -417,7 +413,7 @@ export default function Home() {
 
       <main className="mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-6xl items-center px-4 py-8 sm:px-6">
         <div className="grid w-full gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(20rem,2fr)]">
-          <Card className="border-primary/10 bg-card/90 shadow-lg backdrop-blur-sm">
+          <Card className="border-border/80 bg-card shadow-lg">
             <CardHeader className="items-center p-6 text-center">
               <CardTitle className="text-3xl font-bold tracking-tight">
                 <h1>Magnet to Torrent</h1>
@@ -466,7 +462,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="min-h-80 border-primary/10 bg-card/90 shadow-lg backdrop-blur-sm lg:min-h-[26rem]">
+          <Card className="min-h-80 border-border/80 bg-card shadow-lg lg:min-h-[26rem]">
             <CardHeader className="flex-row items-center justify-between border-b border-border p-5">
               <CardTitle className="flex items-center gap-2 text-xl">
                 <History className="size-5 text-primary" aria-hidden="true" />
