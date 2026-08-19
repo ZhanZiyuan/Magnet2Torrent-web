@@ -42,7 +42,7 @@ const translations = {
     themeToLight: "Switch to light mode",
     sourceCode: "View source code",
     description: "Paste a magnet link to instantly generate a .torrent file.",
-    inputLabel: "Magnet link or info hash",
+    inputAriaLabel: "Magnet link or info hash",
     inputPlaceholder: "magnet:?xt=urn:btih:... or info hash",
     convert: "Convert & download",
     converting: "Fetching metadata...",
@@ -70,7 +70,7 @@ const translations = {
     themeToLight: "切换到浅色模式",
     sourceCode: "查看源代码",
     description: "粘贴磁力链接，即刻生成 .torrent 文件。",
-    inputLabel: "磁力链接或 Info Hash",
+    inputAriaLabel: "磁力链接或 Info Hash",
     inputPlaceholder: "magnet:?xt=urn:btih:... 或 Info Hash",
     convert: "转换并下载",
     converting: "正在获取元数据...",
@@ -98,7 +98,7 @@ const translations = {
     themeToLight: "切換至淺色模式",
     sourceCode: "檢視原始碼",
     description: "貼上磁力連結，即刻產生 .torrent 檔案。",
-    inputLabel: "磁力連結或 Info Hash",
+    inputAriaLabel: "磁力連結或 Info Hash",
     inputPlaceholder: "magnet:?xt=urn:btih:... 或 Info Hash",
     convert: "轉換並下載",
     converting: "正在取得中繼資料...",
@@ -126,7 +126,7 @@ const translations = {
     themeToLight: "ライトモードに切り替え",
     sourceCode: "ソースコードを見る",
     description: "マグネットリンクを貼り付けて .torrent ファイルを生成します。",
-    inputLabel: "マグネットリンクまたは Info Hash",
+    inputAriaLabel: "マグネットリンクまたは Info Hash",
     inputPlaceholder: "magnet:?xt=urn:btih:... または Info Hash",
     convert: "変換してダウンロード",
     converting: "メタデータを取得中...",
@@ -414,34 +414,30 @@ export default function Home() {
       <main className="mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-6xl items-center px-4 py-8 sm:px-6">
         <div className="grid w-full gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(20rem,2fr)]">
           <Card className="border-border/80 bg-card shadow-lg">
-            <CardHeader className="items-center p-6 text-center">
+            <CardHeader className="items-center p-6 pb-7 text-center">
               <CardTitle className="text-3xl font-bold tracking-tight">
                 <h1>Magnet to Torrent</h1>
               </CardTitle>
-              <CardDescription className="pt-1">{t.description}</CardDescription>
+              <CardDescription className="mt-2">{t.description}</CardDescription>
             </CardHeader>
             <CardContent className="p-6 pt-0">
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium" htmlFor="magnet-input">
-                    {t.inputLabel}
-                  </label>
-                  <Input
-                    id="magnet-input"
-                    value={input}
-                    onChange={(event) => {
-                      setInput(event.target.value);
-                      if (inputError) setInputError(false);
-                    }}
-                    placeholder={t.inputPlaceholder}
-                    disabled={isSubmitting}
-                    aria-invalid={inputError}
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    className="h-12 font-mono text-sm"
-                  />
-                </div>
+                <Input
+                  id="magnet-input"
+                  value={input}
+                  onChange={(event) => {
+                    setInput(event.target.value);
+                    if (inputError) setInputError(false);
+                  }}
+                  placeholder={t.inputPlaceholder}
+                  disabled={isSubmitting}
+                  aria-label={t.inputAriaLabel}
+                  aria-invalid={inputError}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  className="h-12 font-mono text-sm"
+                />
 
                 <Button type="submit" className="h-11 w-full" disabled={isSubmitting}>
                   {isSubmitting ? (
